@@ -1,13 +1,25 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
+import Room from '../src/classes/Room';
 import './css/styles.css';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
 import { userDate, formButton } from './querySelectors.js'
+
+let a = {
+    number: 3,
+    roomType: "single room",
+    bidet: false,
+    bedSize: "king",
+    numBeds: 1,
+    costPerNight: 491.14
+}
+
+window.addEventListener('load', function(){
+let test = new Room(a.number, a.roomType, a.bidet, a.bedSize, a.numBeds, a.costPerNight)
+console.log(test)
+
+})
 
 
 
