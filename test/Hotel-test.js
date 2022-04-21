@@ -1,0 +1,90 @@
+import chai from 'chai';
+import Hotel from '../src/classes/Hotel';
+const expect = chai.expect;
+
+import { roomData, bookingData } from './sample-data';
+let hotel;
+
+describe('Hotel', function() {
+    beforeEach( () => {
+        hotel = new Hotel(bookingData)
+        hotel.instantiateRooms(roomData)
+    });
+
+    it('should instantiate a new Hotel', () => {
+        expect(hotel).to.be.an.instanceOf(Hotel);
+    });
+
+    it('should have list of all rooms', () => {
+        expect(hotel.allRooms.length).to.equal(6)
+        expect(hotel.allRooms[0]).to.deep.equal({
+            number: 1,
+            roomType: "residential suite",
+            bidet: true,
+            bedSize: "queen",
+            numBeds: 1,
+            costPerNight: 358.4
+        })
+    });
+
+    it('should have a list of all bookings', () => {
+        expect(hotel.bookings).to.deep.equal(bookingData);
+    });
+
+    it('should be able to filter bookings by date', () => {
+        let date = '2022/01/11'
+        let date2 = ''
+        expect(hotel.filterBookingsByDate(date)).to.deep.equal([{
+            id: "5fwrgu4i7k55hl6ta",
+            userID: 25,
+            date: "2022/01/11",
+            roomNumber: 5
+        },
+        {
+            id: "5fwrgu4i7k55hp7tf",
+            userID: 36,
+            date: "2022/01/11",
+            roomNumber: 2
+        }]);
+        expect(hotel.filterBookingsByDate(date2)).to.deep.equal([])
+    });
+    
+    it('should be able to filter rooms by type', () => {
+        expect(hotel.filterRoomsByType('suite')).to.deep.equal([{
+            number: 2,
+            roomType: "suite",
+            bidet: false,
+            bedSize: "full",
+            numBeds: 2,
+            costPerNight: 477.38
+        }]);
+    });
+
+    it('should return a list of free rooms for a date', () => {
+        let date = '2022/01/11'
+        expect(hotel.returnFreeRooms(date).length).to.equal(4);
+        expect(hotel.returnFreeRooms(date)[0]).to.deep.equal({
+            number: 1,
+            roomType: 'residential suite',
+            bidet: true,
+            bedSize: 'queen',
+            numBeds: 1,
+            costPerNight: 358.4
+          });
+
+    });
+
+    it("should return a customer's history, with prices", () => {
+        expect(hotel.populateCustomerHistory(9).length).to.equal(3);
+        expect(hotel.populateCustomerHistory(9)[0]).to.deep.equal({
+            id: '5fwrgu4i7k55hl6sz',
+            userID: 9,
+            date: '2022/04/22',
+            roomNumber: 2,
+            cost: 477.38
+          });
+          expect(hotel.populateCustomerHistory(9)[1].cost).to.equal(340.17)
+    });
+    
+});
+  
