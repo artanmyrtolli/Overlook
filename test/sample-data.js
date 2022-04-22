@@ -49,6 +49,9 @@ const roomData = [
 }
 ]
 
+
+
+
 const bookingData = [
 {
     id: "5fwrgu4i7k55hl6sz",
@@ -78,19 +81,19 @@ const bookingData = [
     id: "5fwrgu4i7k55hl6tc",
     userID: 22,
     date: "2022/01/30",
-    roomNumber: 13
+    roomNumber: 4
 },
 {
     id: "5fwrgu4i7k55hl6td",
     userID: 27,
     date: "2022/01/31",
-    roomNumber: 20
+    roomNumber: 6
 },
 {
     id: "5fwrgu4i7k55hl6te",
     userID: 44,
     date: "2022/01/19",
-    roomNumber: 8
+    roomNumber: 2
 },
 {
     id: "5fwrgu4i7k55hl6tf",
@@ -102,19 +105,19 @@ const bookingData = [
     id: "5fwrgu4i7k55hl6t7",
     userID: 20,
     date: "2022/02/16",
-    roomNumber: 7
+    roomNumber: 1
 },
 {
     id: "5fwrgu4i7k55hl6t8",
     userID: 1,
     date: "2022/02/05",
-    roomNumber: 12
+    roomNumber: 1
 },
 {
     id: "5fwrgu4i7k55hl6t9",
     userID: 38,
     date: "2022/02/14",
-    roomNumber: 14
+    roomNumber: 3
 },
 {
     id: "5fwrgu4i7k55hl6ta",
@@ -130,4 +133,45 @@ const bookingData = [
 },
 ]
 
-export { roomData, bookingData }
+
+
+let customerData = [
+{
+    id: 1,
+    name: "Leatha Ullrich"
+},
+{
+    id: 2,
+    name: "Rocio Schuster"
+},
+{
+    id: 3,
+    name: "Kelvin Schiller"
+},
+{
+    id: 4,
+    name: "Kennedi Emard"
+},
+{
+    id: 5,
+    name: "Rhiannon Little"
+},
+{
+    id: 6,
+    name: "Fleta Schuppe"
+},
+{
+    id: 7,
+    name: "Dell Rath"
+},
+{
+    id: 8,
+    name: "Era Hand"
+},
+{
+    id: 9,
+    name: "Faustino Quitzon"
+}
+]
+
+export { roomData, bookingData, customerData }
