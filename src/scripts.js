@@ -1,31 +1,31 @@
-import Room from '../src/classes/Room';
 import './css/styles.css';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+import { fetchData } from './apiCalls';
+import Room from './classes/Room';
+import Customer from './classes/Customer';
+import Hotel from './classes/Hotel';
 import './images/turing-logo.png'
 
 import { userDate, formButton } from './querySelectors.js'
 
-let a = {
-    number: 3,
-    roomType: "single room",
-    bidet: false,
-    bedSize: "king",
-    numBeds: 1,
-    costPerNight: 491.14
-}
+let hotel;
+let customer;
+
 
 window.addEventListener('load', function(){
-let test = new Room(a.number, a.roomType, a.bidet, a.bedSize, a.numBeds, a.costPerNight)
-console.log(test)
-
+    fetchData.then(data => {
+        hotel = new Hotel(data[2].bookings)
+        hotel.instantiateRooms(data[1].rooms)
+        customer = new Customer(data[0].customers[0].id, data[0].customers[0].name )
+        console.log('hotel', hotel);
+        console.log('customer', customer);
+})
 })
 
 
 
 const testFunction = () => {
     event.preventDefault()
-    console.log(userDate.value);
+    console.log(customer);
 }
-    
+
 formButton.addEventListener('click', testFunction)
