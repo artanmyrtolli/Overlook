@@ -1,13 +1,14 @@
 import chai from 'chai';
 import Hotel from '../src/classes/Hotel';
+import Customer from '../src/classes/Customer';
 const expect = chai.expect;
 
-import { roomData, bookingData } from './sample-data';
+import { roomData, bookingData, customerData } from './sample-data';
 let hotel;
 
 describe('Hotel', function() {
     beforeEach( () => {
-        hotel = new Hotel(bookingData)
+        hotel = new Hotel(bookingData, customerData)
         hotel.instantiateRooms(roomData)
     });
 
@@ -25,6 +26,14 @@ describe('Hotel', function() {
             numBeds: 1,
             costPerNight: 358.4
         })
+    });
+
+    it('should instantiate a new Customer', () => {
+        expect(hotel.instantiateCustomer(6)).to.be.an.instanceOf(Customer);
+    });
+
+    it('should recognize who logged in', () => {
+        expect(hotel.instantiateCustomer(6).id).to.equal(6);
     });
 
     it('should have a list of all bookings', () => {

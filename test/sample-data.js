@@ -135,7 +135,7 @@ const bookingData = [
 
 
 
-let customerData = [
+const customerData = [
 {
     id: 1,
     name: "Leatha Ullrich"
