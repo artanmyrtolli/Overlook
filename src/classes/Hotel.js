@@ -1,15 +1,20 @@
+import Customer from "./Customer";
 import Room from "./Room";
 
 class Hotel {
-    constructor (bookings) {
+    constructor (bookings, customerData) {
         this.allRooms;
-        this.allCustomers;
+        this.allCustomers = customerData;
         this.bookings = bookings;
         this.todaysEarnings;
     }
 
     instantiateRooms(roomData) {
         this.allRooms = roomData.map(room => room = new Room(room.number, room.roomType, room.bidet, room.bedSize, room.numBeds, room.costPerNight))
+    }
+
+    instantiateCustomer(id){
+        return new Customer(id, this.allCustomers.find(e => e.id === id).name) 
     }
 
     filterBookingsByDate(date){
