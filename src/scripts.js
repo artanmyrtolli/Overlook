@@ -3,7 +3,8 @@ import { fetchData } from './apiCalls';
 // import Room from './classes/Room';
 import Customer from './classes/Customer';
 import Hotel from './classes/Hotel';
-import { formButton } from './querySelectors.js'
+import { formButton, input } from './querySelectors.js'
+import datepicker from 'js-datepicker';
 
 import './images/horse-icon.png'
 
@@ -27,4 +28,5 @@ const testFunction = () => {
     console.log(customer);
 }
 
+// const picker = datepicker(input, { alwaysShow: true })
 // formButton.addEventListener('click', testFunction)
