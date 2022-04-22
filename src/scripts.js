@@ -1,15 +1,14 @@
 import './css/styles.css';
 import { fetchData } from './apiCalls';
-import Room from './classes/Room';
+// import Room from './classes/Room';
 import Customer from './classes/Customer';
 import Hotel from './classes/Hotel';
-import './images/turing-logo.png'
+import { formButton } from './querySelectors.js'
 
-import { userDate, formButton } from './querySelectors.js'
+import './images/horse-icon.png'
 
 let hotel;
 let customer;
-
 
 window.addEventListener('load', function(){
     fetchData.then(data => {
@@ -28,4 +27,4 @@ const testFunction = () => {
     console.log(customer);
 }
 
-formButton.addEventListener('click', testFunction)
+// formButton.addEventListener('click', testFunction)
