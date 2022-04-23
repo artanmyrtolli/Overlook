@@ -8,8 +8,9 @@ let loginUsername = document.querySelector('.login__username');
 let loginPassword = document.querySelector('.login__password');
 let invalidUsernameMsg = document.querySelector('.login__invalid-username');
 let invalidPasswordMsg = document.querySelector('.login__invalid-password');
+let pastBookingsButton = document.querySelector('.dashboard__past-bookings-button')
+let pastTotalSpent = document.querySelector('.dashboard__total-spent')
 
 
 
-
-export { loginButton, input, welcomeMsg, loginModal, modalMask, loginSubmitButton, loginUsername, loginPassword, invalidUsernameMsg, invalidPasswordMsg }
+export { loginButton, input, welcomeMsg, loginModal, modalMask, loginSubmitButton, loginUsername, loginPassword, invalidUsernameMsg, invalidPasswordMsg, pastBookingsButton, pastTotalSpent }
