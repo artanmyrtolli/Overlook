@@ -13,6 +13,7 @@ button {
   font-size: 18pt;
   box-shadow: 2px 2px 2px black;
   border: 1px solid black;
+  opacity: 100%;
 }
 
 button:hover{
@@ -94,6 +95,7 @@ h1 {
   box-shadow: 8px 8px 2px black;
 }
 
+.main__central-bookings-modal-header,
 .main__left-display-welcome{
   margin: 19px;
   font-size: 26pt;
@@ -120,9 +122,10 @@ h1 {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.main__central-bookings-modal,
 .main__central-display-login-modal{
-  display: block;
   position: fixed;
+  flex-wrap: wrap;
   left: 33%;
   top: 37%;
   z-index: 9999;
@@ -131,6 +134,18 @@ h1 {
   background-color: white;
   box-shadow: 6px 6px 2px black;
   border-radius: 8px;
+}
+.main__central-bookings-modal {
+  overflow: auto;
+}
+
+.main__central-bookings-modal-header{
+  margin-top: 10px;
+}
+
+.booking_history{
+  text-align: center;
+  font-size: 16pt;
 }
 
 .login__inputs-box{
@@ -168,6 +183,12 @@ h1 {
 .login__invalid-username,
 .login__invalid-password{
   color: red;
+}
+
+.qs-datepicker-container{
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 

@@ -3,13 +3,17 @@ import { fetchData } from './apiCalls';
 // import Room from './classes/Room';
 import Customer from './classes/Customer';
 import Hotel from './classes/Hotel';
-import { loginButton, input, welcomeMsg, loginModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg, pastBookingsButton, pastTotalSpent } from './querySelectors.js'
+import { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg, pastBookingsButton, pastTotalSpent, rightBox } from './querySelectors.js'
 import datepicker from 'js-datepicker';
 
 import './images/horse-icon.png'
 
+// const picker = datepicker(input, { alwaysShow: true })
+
+  
 let hotel;
 let customer;
+// let selectedDate;
 
 window.addEventListener('load', function(){
     fetchData.then(data => {
@@ -23,6 +27,7 @@ const loginCustomer = () => {
     resetLoginBox()
         hide(loginModal);//temp
         hide(modalMask);
+        hide(loginButton)
         let userID = parseInt(loginUsername.value.substr(8,2));
         customer = hotel.instantiateCustomer(6)
         customer.populatePastBookings(hotel.populateCustomerHistory(6))
@@ -33,6 +38,7 @@ const loginCustomer = () => {
     //     return 
     // }
     // if(validatePassword()) {
+    //    hide(loginButton)
     //     hide(loginModal);
     //     hide(modalMask);
     //     let userID = parseInt(loginUsername.value.substr(8,2));
@@ -51,13 +57,13 @@ const validateUsername = () => {
     if (loginUsername.value.substr(0, 8) !== 'customer')
         return false
     if (checkNumber === null)
-        return false
+    return false
     if (loginUsername.value.length > 10 )
-        return false
+    return false
     if (parseInt(checkNumber[0]) > 50)
-        return false
+    return false
     if (parseInt(checkNumber[0]) < 1)
-        return false
+    return false
     return true
 }
 
@@ -74,17 +80,29 @@ const validatePassword = () => {
 
 const populateDashboard = () => {
     show(pastBookingsButton)
-    show(welcomeMsg)
     show(pastTotalSpent)
     welcomeMsg.innerText = `Welcome, ${customer.name}!`
     pastTotalSpent.innerText = `You've spent a total of $${customer.totalSpent} with us!`
 }
 
 const showLoginModal = () => {
-    hide(welcomeMsg);
-    hide(loginButton);
     show(modalMask);
     show(loginModal);
+}
+
+const showBookingsModal = () => {
+    show(modalMask)
+    show(bookingsModal)
+    renderPastBookings()
+}
+
+const renderPastBookings = () => {
+    console.log(customer.pastBookings);
+    customer.pastBookings.forEach(booking => {
+        bookingsModal.innerHTML += `
+        <p class="booking_history"> Date: ${booking.date}, Room: ${booking.roomType} <br>Cost : $${booking.cost}</p> 
+        `
+    }) 
 }
 
 const show = (element) => {
@@ -95,7 +113,34 @@ const hide = (element) => {
     element.classList.add('hidden');
 }
 
-const picker = datepicker(input, { alwaysShow: true })
+const closeModal = (e) => {
+    if (e.target.dataset.bool === 'true'){
+        hide(bookingsModal)
+        hide(loginModal)
+        hide(modalMask)
+    }
+}
 
+const testFunction = (date) => {
+    console.log('hi mom', date)
+}
+
+const picker = datepicker(calendarInput, {
+    alwaysShow: true,
+    formatter: (input, date, instance) => {
+        let month;
+        let day;
+        date.getMonth() < 10 ? month = "0" + (date.getMonth() + 1 ) : month = date.getMonth() + 1
+        date.getDate() < 10 ? day = "0" + date.getDate() : day = date.getDate()
+        const value = date.getFullYear()+ '/' + month + '/' + day;
+        testFunction(value)
+      }
+  })
+
+// rightBox.addEventListener('click', testFunction)
+pastBookingsButton.addEventListener('click', showBookingsModal)
 loginSubmitButton.addEventListener('click', loginCustomer)
 loginButton.addEventListener('click', showLoginModal)
+modalMask.addEventListener('click', (e) => {
+    closeModal(e)
+})
