@@ -46,7 +46,8 @@ class Hotel {
         pastBookings.forEach(booking => {
         this.allRooms.forEach(room => {
                 if (booking.roomNumber === room.number){
-                    booking.cost = room.costPerNight
+                    booking.cost = room.costPerNight;
+                    booking.roomType = room.roomType;
                 }
             })
         })

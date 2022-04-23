@@ -20,39 +20,42 @@
       <section class="main__left-user-display">
         <h3 class="main__left-display-welcome">Welcome, <br> please log in!</h3>
         <button class="main__left-display-login-button">Log In</button>
-      <section class="main__left-display-dashboard">
-        <button class="dashboard__past-bookings-button hidden">View Past Bookings</button>
-        <p class="dashboard__total-spent hidden"></p>
-      </section>
+        <section class="main__left-display-dashboard">
+          <button class="dashboard__past-bookings-button hidden">View Past Bookings</button>
+          <p class="dashboard__total-spent hidden"></p>
+        </section>
       </section>
       <section class="main__right-user-display">
+        <div class="box" >
+         
+          <input class="datepicker" input="text"></input> 
+      
+       </div>
       </section>
-      <div class="main__central-display-modal-mask hidden"></div>
+      <div class="main__central-display-modal-mask hidden" data-bool="true"></div>
       <div class="main__central-display-login-modal hidden">
-       <div class="login__inputs-box">
-       <div class="login__invalid-msg-box">
-         <p class="login__invalid-username hidden">Invalid username!</p>
-         <p class="login__invalid-password hidden">Invalid password!</p>
-      </div>
-         <label>Username:
-           <input class="login__username" type="text">
+        <div class="login__inputs-box">
+          <div class="login__invalid-msg-box">
+            <p class="login__invalid-username hidden">Invalid username!</p>
+            <p class="login__invalid-password hidden">Invalid password!</p>
+          </div>
+          <label>Username:
+            <input class="login__username" type="text">
           </label>
           <label>Password:
             <input class="login__password" type="text">
           </label>
-            <button class="login__submit-button">Submit</button>
+          <button class="login__submit-button">Submit</button>
         </div>
+      </div>
+        <div class="main__central-bookings-modal hidden">
+          <h3 class="main__central-bookings-modal-header">You booking history with us:</h3>
       </div>
     </section>
     <section class="main__rooms-box">
     </section>
   </main>
 
-   <div class="box" >
-    
-     <form class="input" input="text"></form> 
-
-  </div>
   
 
   <script src="bundle.js"></script>
