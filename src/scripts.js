@@ -3,7 +3,7 @@ import { fetchData } from './apiCalls';
 // import Room from './classes/Room';
 import Customer from './classes/Customer';
 import Hotel from './classes/Hotel';
-import { loginButton, input, welcomeMsg, loginModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg } from './querySelectors.js'
+import { loginButton, input, welcomeMsg, loginModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg, pastBookingsButton, pastTotalSpent } from './querySelectors.js'
 import datepicker from 'js-datepicker';
 
 import './images/horse-icon.png'
@@ -21,19 +21,29 @@ window.addEventListener('load', function(){
 
 const loginCustomer = () => {
     resetLoginBox()
-    if (!validateUsername()){
-        show(invalidUsernameMsg)
-        return 
-    }
-    if(validatePassword()) {
-        hide(loginModal);
+        hide(loginModal);//temp
         hide(modalMask);
         let userID = parseInt(loginUsername.value.substr(8,2));
-        customer = hotel.instantiateCustomer(userID)
-        populateDashboard()
-    } else {
-         show(invalidPasswordMsg)
-     }
+        customer = hotel.instantiateCustomer(6)
+        customer.populatePastBookings(hotel.populateCustomerHistory(6))
+        customer.calculateTotalSpent()
+        populateDashboard()//temp
+    // if (!validateUsername()){
+    //     show(invalidUsernameMsg)
+    //     return 
+    // }
+    // if(validatePassword()) {
+    //     hide(loginModal);
+    //     hide(modalMask);
+    //     let userID = parseInt(loginUsername.value.substr(8,2));
+    //     customer = hotel.instantiateCustomer(userID)
+    //     customer.populatePastBookings(hotel.populateCustomerHistory(userID))
+    //     customer.calculateTotalSpent()     
+    //     console.log(customer);   
+    //     populateDashboard()
+    // } else {
+    //      show(invalidPasswordMsg)
+    //  }
 }
 
 const validateUsername = () => {
@@ -63,7 +73,11 @@ const validatePassword = () => {
 }
 
 const populateDashboard = () => {
-    
+    show(pastBookingsButton)
+    show(welcomeMsg)
+    show(pastTotalSpent)
+    welcomeMsg.innerText = `Welcome, ${customer.name}!`
+    pastTotalSpent.innerText = `You've spent a total of $${customer.totalSpent} with us!`
 }
 
 const showLoginModal = () => {
