@@ -6,6 +6,21 @@
 
 @import '~js-datepicker/dist/datepicker.min.css';
 
+button {
+  width: 120px;
+  height: 47px;
+  border-radius: 8px;
+  font-size: 18pt;
+  box-shadow: 2px 2px 2px black;
+  border: 1px solid black;
+}
+
+button:hover{
+  background-color: brown;
+  cursor: pointer;
+  color: white
+}
+
 body {
   background: url('../images/background.jpg') no-repeat center fixed;
   background-size: cover;
@@ -15,6 +30,7 @@ body {
   align-items: center;
   margin: 0;
 }
+
 .title__box{
   width: 85%;
   height: 60px;
@@ -79,33 +95,71 @@ h1 {
 }
 
 .main__left-display-welcome{
-  margin: 20px;
+  margin: 19px;
   font-size: 26pt;
   text-align: center;
-  opacity: 100%;
-  
+  margin-top: -6px;
 }
 
-.main__left-display-login-button {
-  width: 120px;
-  height: 47px;
+.main__central-display-modal-mask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.main__central-display-login-modal{
+  display: block;
+  position: fixed;
+  left: 33%;
+  top: 37%;
+  z-index: 9999;
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  box-shadow: 6px 6px 2px black;
   border-radius: 8px;
-  font-size: 18pt;
-  box-shadow: 2px 2px 2px black;
-  border: 1px solid black;
 }
 
-.main__left-display-login-button:hover{
-  background-color: brown;
-  cursor: pointer;
-  color: white
+.login__inputs-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  font-size: 20pt;
+}
 
+.login__username, 
+.login__password {
+  height: 30px;
+  width: 170px;
+  font-size: 20pt;
+  border: 1px solid black;
+  margin: 10px;
+  text-align: center;
 }
 
 .main__rooms-box {
   width: 100%;
   height: 250px;
 }
+
+.login__invalid-msg-box{
+  height: 63px;
+  text-align: center;
+  width: 100%;
+}
+
+.login__invalid-username,
+.login__invalid-password{
+  color: red;
+}
+
 
 .hidden {
   display: none;

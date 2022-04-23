@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap" rel="stylesheet">
-
   <title>The Prancing Pony</title>
 </head>
 <body>
@@ -19,24 +18,38 @@
   <main class="main__box">
     <section class="main__central-display-box">
       <section class="main__left-user-display">
-        <p class="main__left-display-welcome">Welcome, please log in!</p>
+        <p class="main__left-display-welcome">Welcome, <br> please log in!</p>
         <button class="main__left-display-login-button"> Log In</button>
       </section>
       <section class="main__right-user-display">
       </section>
+      <div class="main__central-display-modal-mask hidden"></div>
+      <div class="main__central-display-login-modal hidden">
+       <div class="login__inputs-box">
+       <div class="login__invalid-msg-box">
+         <p class="login__invalid-username hidden">Invalid username!</p>
+         <p class="login__invalid-password hidden">Invalid password!</p>
+      </div>
+         <label>Username:
+           <input class="login__username" type="text">
+          </label>
+          <label>Password:
+            <input class="login__password" type="text">
+          </label>
+            <button class="login__submit-button">Submit</button>
+        </div>
+      </div>
     </section>
     <section class="main__rooms-box">
     </section>
   </main>
 
-  <!-- <div class="box" >
-    <img src="./images/turing-logo.png" alt="turing logo">
-    <form> 
-     <input class="input hidden" type="text"> 
-      <button class="input-button">Submit!</button>
-    </form>
+   <div class="box" >
+    
+     <form class="input" input="text"></form> 
+
   </div>
-   -->
+  
 
   <script src="bundle.js"></script>
 

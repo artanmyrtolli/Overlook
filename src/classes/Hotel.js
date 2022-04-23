@@ -27,7 +27,8 @@ class Hotel {
 
     returnFreeRooms(date){
         let bookings = this.filterBookingsByDate(date);
-        let remainingRooms = this.allRooms;
+        let remainingRooms = []
+        this.allRooms.forEach(room => remainingRooms.push(room))
 
         bookings.forEach(booking => {
             remainingRooms.forEach((room, index) => {
