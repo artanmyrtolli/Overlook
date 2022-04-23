@@ -80,7 +80,6 @@ describe('Hotel', function() {
             numBeds: 1,
             costPerNight: 358.4
           });
-
     });
 
     it("should return a customer's history, with prices", () => {
