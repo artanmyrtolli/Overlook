@@ -1,5 +1,5 @@
 import './css/styles.css';
-import { fetchData } from './apiCalls';
+import { fetchData, postDataset } from './apiCalls';
 // import Room from './classes/Room';
 import Customer from './classes/Customer';
 import Hotel from './classes/Hotel';
@@ -54,13 +54,13 @@ const validateUsername = () => {
     if (loginUsername.value.substr(0, 8) !== 'customer')
         return false
     if (checkNumber === null)
-    return false
+        return false
     if (loginUsername.value.length > 10 )
-    return false
+        return false
     if (parseInt(checkNumber[0]) > 50)
-    return false
+        return false
     if (parseInt(checkNumber[0]) < 1)
-    return false
+        return false
     return true
 }
 
@@ -136,14 +136,24 @@ const renderRoomsAvailable = (date) => {
           <p class="room__card-info-p">Number of beds: ${room.numBeds}</p>
           <p class="room__card-info-p">Bidet: ${bidet}</p>
           <p class="room__card-info-p">Estimated cost: $${Math.round(room.costPerNight)}</p>
-          <button class="room__card-book-button" id=${room.number} data-button="book">Book Room</button>`
+          <button class="room__card-book-button" data-room="${room.roomType}" id=${room.number}>Book Room</button></div>`
     })
+}
+
+const postBooking = (e) => {
+    postDataset(customer.id, selectedDate, e.target.id).then(data => {
+        console.log(data);
+        hotel.bookings.push(data.newBooking)
+        customer.populatePastBookings(hotel.populateCustomerHistory(customer.id))
+        customer.calculateTotalSpent()
+        populateDashboard()
+    })
+    
 }
 
 const picker = datepicker(calendarInput, {
     alwaysShow: true,
-    // minDate: new Date(),
-    formatter: (input, date, instance) => {
+    formatter: (calendarInput, date, instance) => {
         let month;
         let day;
         date.getMonth() < 10 ? month = "0" + (date.getMonth() + 1 ) : month = date.getMonth() + 1
@@ -154,7 +164,12 @@ const picker = datepicker(calendarInput, {
       }
   })
 
-// rightBox.addEventListener('click', testFunction)
+roomBox.addEventListener('click', (e) => {
+    if (!event.target.id) 
+    return
+    postBooking(e)
+})
+
 pastBookingsButton.addEventListener('click', showBookingsModal)
 loginSubmitButton.addEventListener('click', loginCustomer)
 loginButton.addEventListener('click', showLoginModal)

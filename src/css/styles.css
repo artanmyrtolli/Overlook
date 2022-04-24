@@ -221,6 +221,7 @@ h1 {
 
 .main__rooms-card-box{
   margin: 2%;
+  margin-bottom: 7%;
   width: 100%;
   height: 36%;
   display: flex;

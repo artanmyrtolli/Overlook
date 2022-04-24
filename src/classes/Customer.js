@@ -13,11 +13,6 @@ class Customer {
         this.totalSpent = Math.round(this.pastBookings.reduce((acc, booking) => acc += booking.cost, 0) * 100) / 100
     }
 
-    bookRoom(newBooking, price){
-        newBooking.cost = price;
-        this.pastBookings.push(newBooking);
-        this.totalSpent += price;
-    }
 }
 
 export default Customer;
