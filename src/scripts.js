@@ -3,17 +3,14 @@ import { fetchData } from './apiCalls';
 // import Room from './classes/Room';
 import Customer from './classes/Customer';
 import Hotel from './classes/Hotel';
-import { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg, pastBookingsButton, pastTotalSpent, rightBox } from './querySelectors.js'
+import { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg, pastBookingsButton, pastTotalSpent, rightBox, roomsBoxHeader, roomBox } from './querySelectors.js'
 import datepicker from 'js-datepicker';
 
 import './images/horse-icon.png'
-
-// const picker = datepicker(input, { alwaysShow: true })
-
   
 let hotel;
 let customer;
-// let selectedDate;
+let selectedDate;
 
 window.addEventListener('load', function(){
     fetchData.then(data => {
@@ -121,19 +118,39 @@ const closeModal = (e) => {
     }
 }
 
-const testFunction = (date) => {
-    console.log('hi mom', date)
+const renderRoomsAvailable = (date) => {
+    roomBox.innerHTML = ''
+    roomsBoxHeader.innerText = `Available Rooms:`
+    let bidet;
+    hotel.returnFreeRooms(date).forEach(room => {
+        room.bidet ? bidet = true : bidet = false
+        let roomTypeCap = room.roomType[0].toUpperCase() + room.roomType.substring(1)
+        roomBox.innerHTML += `
+        <section class="main__rooms-card-box">
+        <div class="main__room-card">
+          <h5 class="room__card-header">${roomTypeCap}</h5>
+          <img src="" alt=""></div>
+        <div class="main__room-card-info">
+          <h5 class="room__card-info-header">Room Details:</h5>
+          <p class="room__card-info-p">Bed size(s): ${room.bedSize}</p>
+          <p class="room__card-info-p">Number of beds: ${room.numBeds}</p>
+          <p class="room__card-info-p">Bidet: ${bidet}</p>
+          <p class="room__card-info-p">Estimated cost: $${Math.round(room.costPerNight)}</p>
+          <button class="room__card-book-button" id=${room.number} data-button="book">Book Room</button>`
+    })
 }
 
 const picker = datepicker(calendarInput, {
     alwaysShow: true,
+    // minDate: new Date(),
     formatter: (input, date, instance) => {
         let month;
         let day;
         date.getMonth() < 10 ? month = "0" + (date.getMonth() + 1 ) : month = date.getMonth() + 1
         date.getDate() < 10 ? day = "0" + date.getDate() : day = date.getDate()
         const value = date.getFullYear()+ '/' + month + '/' + day;
-        testFunction(value)
+        selectedDate = value;
+        renderRoomsAvailable(value)
       }
   })
 

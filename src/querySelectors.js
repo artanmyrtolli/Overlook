@@ -12,7 +12,9 @@ let invalidPasswordMsg = document.querySelector('.login__invalid-password');
 let pastBookingsButton = document.querySelector('.dashboard__past-bookings-button')
 let pastTotalSpent = document.querySelector('.dashboard__total-spent')
 let rightBox = document.querySelector('.main__right-user-display')
+let roomsBoxHeader = document.querySelector('.main__rooms-header')
+let roomBox = document.querySelector('.main__rooms-box')
 
 
 
-export { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginUsername, loginPassword, invalidUsernameMsg, invalidPasswordMsg, pastBookingsButton, pastTotalSpent, rightBox }
+export { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginUsername, loginPassword, invalidUsernameMsg, invalidPasswordMsg, pastBookingsButton, pastTotalSpent, rightBox, roomsBoxHeader, roomBox }

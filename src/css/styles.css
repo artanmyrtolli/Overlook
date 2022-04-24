@@ -1,5 +1,5 @@
 * {
-  border: 1px solid white;
+  /* border: 1px solid white; */
   font-family: 'Nunito', sans-serif;
   font-style: italic;
 }
@@ -29,13 +29,13 @@ body {
   flex-direction: column;
   height: 300vh;
   align-items: center;
-  margin: 0;
+  margin: 0px;
 }
 
 .title__box{
   width: 85%;
   height: 60px;
-  margin: 2%;
+  margin: 4%;
   background-color: white;
   opacity: 80%;
   border-radius: 8px;
@@ -63,13 +63,13 @@ h1 {
 .nav__box{
   width: 85%;
   height: 60px;
-  margin: 2%;
+  margin-bottom: 2%;
 }
 
 .main__box{
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 200vh;
   width: 85%;
 }
 
@@ -88,7 +88,7 @@ h1 {
   justify-content: center;
   align-items: center;
   width: 40%;
-  height: 80%;
+  height: 100%;
   background-color: white;
   opacity: 80%;
   border-radius: 8px;
@@ -101,6 +101,10 @@ h1 {
   font-size: 26pt;
   text-align: center;
   margin-top: -6px;
+}
+
+.main__left-display-dashboard{
+  margin-top: 5px;
 }
 
 .dashboard__past-bookings-button{
@@ -169,11 +173,6 @@ h1 {
   text-align: center;
 }
 
-.main__rooms-box {
-  width: 100%;
-  height: 250px;
-}
-
 .login__invalid-msg-box{
   height: 63px;
   text-align: center;
@@ -185,12 +184,72 @@ h1 {
   color: red;
 }
 
-.qs-datepicker-container{
-  position: relative;
-  top: 0;
-  left: 0;
+.main__right-user-display{
+  justify-content: space-between;
 }
 
+.qs-datepicker-container{
+  margin-top: -65px;
+  margin-left: -85px;
+  width: 200%;
+}
+
+.main__rooms-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 45%;
+  background-color: white;
+  opacity: 80%;
+  border-radius: 8px;
+  box-shadow: 8px 8px 2px black;
+  margin-top: 5%;
+  overflow-x: auto;
+}
+.room__card-info-header,
+.room__card-header,
+.main__rooms-header{
+  margin-top: 2%;
+  margin-bottom: 0;
+  color: black;
+  font-size: 26pt;
+  height: 50px;
+  text-align: center;
+}
+
+.main__rooms-card-box{
+  margin: 2%;
+  width: 100%;
+  height: 36%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.main__room-card-info,
+.main__room-card{
+  border: 1px solid black;
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  box-shadow: 6px 6px 2px black;
+  border-radius: 8px;
+}
+
+.room__card-info-p{
+  margin-top: 1%;
+  margin-bottom: 2%;
+  margin-left: 10%;
+  font-size: 18pt;
+}
+
+.room__card-book-button{
+  margin-left: 50%;
+  z-index: 2;
+  width: 40%;
+}
 
 .hidden {
   display: none;
