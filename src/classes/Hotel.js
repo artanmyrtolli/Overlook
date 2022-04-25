@@ -22,9 +22,9 @@ class Hotel {
         return this.bookings.filter(booking => booking.date === date)
     }
 
-    filterRoomsByType(type){
-        return this.unbookedRooms.filter(room => room.roomType === type)
-    }
+    // filterRoomsByType(type){
+    //     return this.unbookedRooms.filter(room => room.roomType === type)
+    // }
 
     returnFreeRooms(date){
         let bookings = this.filterBookingsByDate(date);

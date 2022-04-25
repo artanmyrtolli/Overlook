@@ -3,7 +3,7 @@ import { fetchData, postDataset } from './apiCalls';
 // import Room from './classes/Room';
 import Customer from './classes/Customer';
 import Hotel from './classes/Hotel';
-import { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg, pastBookingsButton, pastTotalSpent, rightBox, roomsBoxHeader, roomBox } from './querySelectors.js'
+import { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg, pastBookingsButton, pastTotalSpent, rightBox, roomsBoxHeader, roomBox, roomBoxAll,  roomFilterDropdown } from './querySelectors.js'
 import datepicker from 'js-datepicker';
 
 import './images/horse-icon.png'
@@ -119,11 +119,14 @@ const closeModal = (e) => {
 }
 
 const renderRoomsAvailable = (date) => {
-    roomBox.innerHTML = ''
-    roomsBoxHeader.innerText = `Available Rooms:`
+    if (!hotel.returnFreeRooms(date).length){
+        renderApologyMessage()
+        return
+    }
+    roomBox.innerHTML = '<h4 class="main__rooms-header">Available Rooms:</h4>'
     let bidet;
     hotel.returnFreeRooms(date).forEach(room => {
-        room.bidet ? bidet = true : bidet = false
+        room.bidet ? bidet = "Yes" : bidet = "No"
         let roomTypeCap = room.roomType[0].toUpperCase() + room.roomType.substring(1)
         roomBox.innerHTML += `
         <section class="main__rooms-card-box">
@@ -140,6 +143,10 @@ const renderRoomsAvailable = (date) => {
     })
 }
 
+const renderApologyMessage = () => {
+    roomBox.innerHTML = `<h4 class="main__rooms-header">All booked up! We're sorry, there are no rooms available for your selected date, please choose another date.</h4>`
+}
+
 const postBooking = (e) => {
     postDataset(customer.id, selectedDate, e.target.id).then(data => {
         console.log(data);
@@ -148,7 +155,18 @@ const postBooking = (e) => {
         customer.calculateTotalSpent()
         populateDashboard()
     })
-    
+}
+
+const testFunction = () => {
+    renderRoomsAvailable(selectedDate)
+    let roomCards = document.querySelectorAll('.main__room-card')
+    console.log(roomCards);
+        roomCards.forEach(card => {
+            if (card.innerText.toLowerCase() !== roomFilterDropdown.value){
+                card.parentElement.remove()
+            }
+        })
+    console.log(roomFilterDropdown.value);
 }
 
 const picker = datepicker(calendarInput, {
@@ -175,4 +193,5 @@ loginSubmitButton.addEventListener('click', loginCustomer)
 loginButton.addEventListener('click', showLoginModal)
 modalMask.addEventListener('click', (e) => {
     closeModal(e)
-})
+});
+roomFilterDropdown.addEventListener('input', testFunction)
