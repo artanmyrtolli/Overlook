@@ -34,7 +34,6 @@
         </div>
         <h3>To check for availability, please select a date</h3>
       </section>
-      <div class="main__central-display-modal-mask hidden" data-bool="true"></div>
       <div class="main__central-display-login-modal hidden">
         <div class="login__inputs-box">
           <div class="login__invalid-msg-box">
@@ -50,33 +49,28 @@
           <button class="login__submit-button">Submit</button>
         </div>
       </div>
-        <div class="main__central-bookings-modal hidden">
-          <h3 class="main__central-bookings-modal-header">Your booking history with us:</h3>
+      <div class="main__central-bookings-modal hidden">
+        <h3 class="main__central-bookings-modal-header">Your booking history with us:</h3>
       </div>
     </section>
+    <select class="main__central-rooms-box-dropdown-filter">
+      <option value="filter-by" name="roomtype-filter">Filter by: </option>
+      <option value="residential suite" name="roomtype-filter">Residential Suite</option>
+      <option value="suite" name="roomtype-filter">Suite</option>
+      <option value="single room" name="roomtype-filter">Single Room</option>
+      <option value="junior suite" name="roomtype-filter">Junior Suite</option>
+    </select>
     <section class="main__rooms-box">
-      <h4 class="main__rooms-header"></h4>
-      <!-- <section class="main__rooms-card-box">
-        <div class="main__room-card">
-          <h5 class="room__card-header">Suite</h5>
-          <img src="" alt="">
-        </div>
-        <div class="main__room-card-info">
-          <h5 class="room__card-info-header">Room Details:</h5>
-          <p class="room__card-info-p">Bed size(s):</p>
-          <p class="room__card-info-p">Number of beds:</p>
-          <p class="room__card-info-p">Bidet:</p>
-          <p class="room__card-info-p">Cost:
-          </p>
-          <button class="room__card-book-button">Book Room</button> -->
-        </div>
-      </section>
-    </section>
-  </main>
+      <h4 class="main__rooms-header hidden">Available Rooms:</h4>
+    </div>
+  </section>
+</section>
+<div class="main__central-display-modal-mask hidden" data-bool="true"></div>
+</main>
 
-  
 
-  <script src="bundle.js"></script>
+
+<script src="bundle.js"></script>
 
 </body>
 </html>

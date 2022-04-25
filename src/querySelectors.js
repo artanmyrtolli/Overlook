@@ -14,7 +14,10 @@ let pastTotalSpent = document.querySelector('.dashboard__total-spent')
 let rightBox = document.querySelector('.main__right-user-display')
 let roomsBoxHeader = document.querySelector('.main__rooms-header')
 let roomBox = document.querySelector('.main__rooms-box')
+let roomBoxAll = document.querySelectorAll('.main__rooms-box')
+// let roomCards = document.querySelectorAll('.main__room-card')
+let roomFilterDropdown = document.querySelector('.main__central-rooms-box-dropdown-filter')
 
 
 
-export { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginUsername, loginPassword, invalidUsernameMsg, invalidPasswordMsg, pastBookingsButton, pastTotalSpent, rightBox, roomsBoxHeader, roomBox }
+export { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginUsername, loginPassword, invalidUsernameMsg, invalidPasswordMsg, pastBookingsButton, pastTotalSpent, rightBox, roomsBoxHeader, roomBox, roomBoxAll, roomFilterDropdown }
