@@ -208,7 +208,8 @@ h1 {
   height: 90%;
   font-size: 14pt;
   font-weight: bold;
-  color: black
+  color: black;
+  tab-size: 50px;
 }
 
 .qs-day{

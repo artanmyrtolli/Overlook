@@ -25,7 +25,7 @@
       </section>
       <section class="main__right-user-display">
         <div class="box" >
-          <label class="datepicker-label"for="datepicker">To check availability, please select a date<br><input class="datepicker" name="datepicker" input="text"></input></label>
+          <label class="datepicker-label"for="datepicker" tabindex="0">To check availability, please select a date<br><input class="datepicker" name="datepicker" input="text" tabindex="1"></input></label>
         </div>
         <!-- <h3>To check for availability, please select a date</h3> -->
       </section>
@@ -36,12 +36,12 @@
             <p class="login__invalid-password hidden">Invalid password!</p>
           </div>
           <label>Username:
-            <input class="login__username" type="text">
+            <input class="login__username" type="text" tabindex="0"> 
           </label>
           <label>Password:
-            <input class="login__password" type="text">
+            <input class="login__password" type="text" tabindex="1">
           </label>
-          <button class="login__submit-button">Submit</button>
+          <button class="login__submit-button" tabindex="2">Submit</button>
         </div>
       </div>
       <div class="main__central-bookings-modal hidden">
