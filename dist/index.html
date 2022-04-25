@@ -13,12 +13,10 @@
     <h1>The Prancing Pony</h1>
     <img class="title__icon-right" src="./images/horse-icon.png" alt="rearing horse">
   </section>
-  <!-- <nav class="nav__box">
-  </nav> -->
   <main class="main__box">
     <section class="main__central-display-box">
       <section class="main__left-user-display">
-        <h3 class="main__left-display-welcome">Welcome, <br> please log in!</h3>
+        <h2 class="main__left-display-welcome">Welcome, <br> please log in!</h2>
         <button class="main__left-display-login-button">Log In</button>
         <section class="main__left-display-dashboard">
           <button class="dashboard__past-bookings-button hidden">View Past Bookings</button>
@@ -27,12 +25,9 @@
       </section>
       <section class="main__right-user-display">
         <div class="box" >
-          <h3>Check for availability:</h3>
-          
-          <input class="datepicker" input="text"></input> 
-          
+          <label class="datepicker-label"for="datepicker">To check availability, please select a date<br><input class="datepicker" name="datepicker" input="text"></input></label>
         </div>
-        <h3>To check for availability, please select a date</h3>
+        <!-- <h3>To check for availability, please select a date</h3> -->
       </section>
       <div class="main__central-display-login-modal hidden">
         <div class="login__inputs-box">
@@ -50,7 +45,7 @@
         </div>
       </div>
       <div class="main__central-bookings-modal hidden">
-        <h3 class="main__central-bookings-modal-header">Your booking history with us:</h3>
+        <h4 class="main__central-bookings-modal-header">Your booking history with us:</h4>
       </div>
     </section>
     <select class="main__central-rooms-box-dropdown-filter">

@@ -30,6 +30,7 @@ const loginCustomer = () => {
         customer.populatePastBookings(hotel.populateCustomerHistory(6))
         customer.calculateTotalSpent()
         populateDashboard()//temp
+
     // if (!validateUsername()){
     //     show(invalidUsernameMsg)
     //     return 
@@ -183,7 +184,8 @@ const filterByRoomType = () => {
 
 const picker = datepicker(calendarInput, {
     alwaysShow: true,
-    // minDate: new Date(),
+    minDate: new Date(),
+    position: "c",
     formatter: (calendarInput, date, instance) => {
         let month;
         let day;
