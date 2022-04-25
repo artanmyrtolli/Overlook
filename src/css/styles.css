@@ -195,7 +195,7 @@ h1 {
 }
 
 .main__central-rooms-box-dropdown-filter{
-  width: 15%;
+  width: 25%;
   height: 3%;
   margin-top: 3%;
   margin-bottom: -5%;
@@ -203,6 +203,11 @@ h1 {
   background-color: rgb(116, 30, 30);
   font-size: 16pt;
   border-radius: 8px;
+  box-shadow: 6px 6px 2px black;
+}
+
+.main__central-rooms-box-dropdown-filter:hover{
+  cursor: pointer;
 }
 
 .main__rooms-box {
@@ -266,4 +271,9 @@ h1 {
 
 .hidden {
   display: none;
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: gray;
 }

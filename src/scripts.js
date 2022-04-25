@@ -50,7 +50,8 @@ const loginCustomer = () => {
 }
 
 const validateUsername = () => {
-    let checkNumber = loginUsername.value.match(/\d+/)  
+    let checkNumber = loginUsername.value.match(/\d+/) 
+    console.log(checkNumber); 
     if (loginUsername.value.substr(0, 8) !== 'customer')
         return false
     if (checkNumber === null)
@@ -94,7 +95,7 @@ const showBookingsModal = () => {
 }
 
 const renderPastBookings = () => {
-    console.log(customer.pastBookings);
+    customer.pastBookings.sort((a,b) => a.date.split('/').join('') - b.date.split('/').join(''))
     customer.pastBookings.forEach(booking => {
         bookingsModal.innerHTML += `
         <p class="booking_history"> Date: ${booking.date}, Room: ${booking.roomType} <br>Cost : $${booking.cost}</p> 
@@ -123,7 +124,7 @@ const renderRoomsAvailable = (date) => {
         renderApologyMessage()
         return
     }
-    roomBox.innerHTML = '<h4 class="main__rooms-header">Available Rooms:</h4>'
+    roomBox.innerHTML = `<h4 class="main__rooms-header">Available Rooms for ${selectedDate}:</h4>`
     let bidet;
     hotel.returnFreeRooms(date).forEach(room => {
         room.bidet ? bidet = "Yes" : bidet = "No"
@@ -144,10 +145,15 @@ const renderRoomsAvailable = (date) => {
 }
 
 const renderApologyMessage = () => {
-    roomBox.innerHTML = `<h4 class="main__rooms-header">All booked up! We're sorry, there are no rooms available for your selected date, please choose another date.</h4>`
+    roomBox.innerHTML = `<h4 class="main__rooms-header">Sorry, there are no rooms available for your selected date, please choose another date.</h4>`
 }
 
 const postBooking = (e) => {
+    if (!customer) {
+        showLoginModal()
+        return
+    }
+    disableBookingButton()
     postDataset(customer.id, selectedDate, e.target.id).then(data => {
         console.log(data);
         hotel.bookings.push(data.newBooking)
@@ -157,7 +163,13 @@ const postBooking = (e) => {
     })
 }
 
-const testFunction = () => {
+const disableBookingButton = () => {
+    let bookButton = document.querySelector('.room__card-book-button')
+    bookButton.classList.add('disabled')
+    bookButton.innerText = "Booked!"
+}
+
+const filterByRoomType = () => {
     renderRoomsAvailable(selectedDate)
     let roomCards = document.querySelectorAll('.main__room-card')
     console.log(roomCards);
@@ -171,6 +183,7 @@ const testFunction = () => {
 
 const picker = datepicker(calendarInput, {
     alwaysShow: true,
+    // minDate: new Date(),
     formatter: (calendarInput, date, instance) => {
         let month;
         let day;
@@ -194,4 +207,4 @@ loginButton.addEventListener('click', showLoginModal)
 modalMask.addEventListener('click', (e) => {
     closeModal(e)
 });
-roomFilterDropdown.addEventListener('input', testFunction)
+roomFilterDropdown.addEventListener('input', filterByRoomType)
