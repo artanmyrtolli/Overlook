@@ -30,6 +30,7 @@ const loginCustomer = () => {
         customer.populatePastBookings(hotel.populateCustomerHistory(6))
         customer.calculateTotalSpent()
         populateDashboard()//temp
+
     // if (!validateUsername()){
     //     show(invalidUsernameMsg)
     //     return 
@@ -183,7 +184,19 @@ const filterByRoomType = () => {
 
 const picker = datepicker(calendarInput, {
     alwaysShow: true,
-    // minDate: new Date(),
+    minDate: new Date(),
+    position: "c",
+    inline: true,
+    altField: '.js-date-input',
+    onChangeMonthYear: function (year, month, inst) {
+        setTimeout(function () {
+            // add href to prev/next anchors so that they can receive TAB focus
+            $('.ui-datepicker-prev, .ui-datepicker-next').attr("href", "#");
+        }, 50);
+    },
+    onSelect: function() {
+        this        .focus();
+    },
     formatter: (calendarInput, date, instance) => {
         let month;
         let day;
@@ -208,3 +221,10 @@ modalMask.addEventListener('click', (e) => {
     closeModal(e)
 });
 roomFilterDropdown.addEventListener('input', filterByRoomType)
+document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){
+        hide(bookingsModal)
+        hide(loginModal)
+        hide(modalMask)
+    }
+});
