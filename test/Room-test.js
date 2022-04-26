@@ -12,7 +12,7 @@ describe('Room', function() {
         room2 = new Room(roomData[1].number, roomData[1].roomType, roomData[1].bidet, roomData[1].bedSize, roomData[1].numBeds, roomData[1].costPerNight)
     });
 
-    it('should instantiate a new Room', () => {
+    it('should be an instance of Room', () => {
       expect(room).to.be.an.instanceOf(Room);
       expect(room2).to.be.an.instanceOf(Room);
     });

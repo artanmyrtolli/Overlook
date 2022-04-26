@@ -17,7 +17,7 @@ describe('Customer', function() {
         customer3 = new Customer(customerData[7].id, customerData[7].name)
     });
 
-    it('should instantiate a new Customer', () => {
+    it('should be an instance of Customer', () => {
         expect(customer).to.be.an.instanceOf(Customer);
     });
 
@@ -41,6 +41,7 @@ describe('Customer', function() {
             userID: 1,
             date: "2022/02/05",
             roomNumber: 1,
+            roomType: "residential suite",
             cost: 358.4
         }])
     });
@@ -56,6 +57,7 @@ describe('Customer', function() {
               userID: 9,
               date: '2022/04/22',
               roomNumber: 2,
+              roomType: "suite",
               cost: 477.38
             },
             {
@@ -63,6 +65,7 @@ describe('Customer', function() {
               userID: 9,
               date: '2022/01/24',
               roomNumber: 5,
+              roomType: "single room",
               cost: 340.17
             },
             {
@@ -70,6 +73,7 @@ describe('Customer', function() {
               userID: 9,
               date: '2022/01/10',
               roomNumber: 6,
+              roomType: "junior suite",
               cost: 397.02
             }
           ])
@@ -96,32 +100,7 @@ describe('Customer', function() {
         customer3.populatePastBookings(pastData);
         
         expect(customer3.totalSpent).to.equal(0)
-    });
-
-    it('should be able to book a room', () => {
-        let pastData = hotel.populateCustomerHistory(customer3.id)
-        customer3.populatePastBookings(pastData);
-        let newBooking = {
-            id: "5fwrgu4i7k55hl6ta",
-            userID: 25,
-            date: "2022/01/11",
-            roomNumber: 5
-        }
-        let price = 340.17
-        
-        customer3.bookRoom(newBooking, price)
-        
-        expect(customer3.pastBookings).to.deep.equal([{
-            id: "5fwrgu4i7k55hl6ta",
-            userID: 25,
-            date: "2022/01/11",
-            roomNumber: 5,
-            cost: 340.17
-        }])
-        expect(customer3.totalSpent).to.equal(340.17)
-    });
-
-    
+    });  
    
 });
   

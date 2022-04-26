@@ -12,7 +12,7 @@ describe('Hotel', function() {
         hotel.instantiateRooms(roomData)
     });
 
-    it('should instantiate a new Hotel', () => {
+    it('should be an instance of Hotel', () => {
         expect(hotel).to.be.an.instanceOf(Hotel);
     });
 
@@ -33,7 +33,7 @@ describe('Hotel', function() {
     });
 
     it('should recognize who logged in', () => {
-        expect(hotel.instantiateCustomer(6).id).to.equal(6);
+        expect(hotel.instantiateCustomer(6).name).to.equal('Fleta Schuppe');
     });
 
     it('should have a list of all bookings', () => {
@@ -57,19 +57,8 @@ describe('Hotel', function() {
         }]);
         expect(hotel.filterBookingsByDate(date2)).to.deep.equal([])
     });
-    
-    it('should be able to filter rooms by type', () => {
-        expect(hotel.filterRoomsByType('suite')).to.deep.equal([{
-            number: 2,
-            roomType: "suite",
-            bidet: false,
-            bedSize: "full",
-            numBeds: 2,
-            costPerNight: 477.38
-        }]);
-    });
 
-    it('should return a list of free rooms for a date', () => {
+    it('should return a list of available rooms for a date', () => {
         let date = '2022/01/11'
         expect(hotel.returnFreeRooms(date).length).to.equal(4);
         expect(hotel.returnFreeRooms(date)[0]).to.deep.equal({
@@ -82,14 +71,15 @@ describe('Hotel', function() {
           });
     });
 
-    it("should return a customer's history, with prices", () => {
+    it("should return a customer's history, with prices and room types", () => {
         expect(hotel.populateCustomerHistory(9).length).to.equal(3);
         expect(hotel.populateCustomerHistory(9)[0]).to.deep.equal({
             id: '5fwrgu4i7k55hl6sz',
             userID: 9,
             date: '2022/04/22',
             roomNumber: 2,
-            cost: 477.38
+            cost: 477.38,
+            "roomType": "suite"
           });
           expect(hotel.populateCustomerHistory(9)[1].cost).to.equal(340.17)
     });
