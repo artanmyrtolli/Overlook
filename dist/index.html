@@ -25,9 +25,8 @@
       </section>
       <section class="main__right-user-display">
         <div class="box" >
-          <label class="datepicker-label"for="datepicker" tabindex="0">To check availability, please select a date<br><input class="datepicker" name="datepicker" input="text" tabindex="1"></input></label>
+          <label class="datepicker-label"for="datepicker" tabindex="0">To check availability, please select a date<br><input class="datepicker" name="datepicker" input="text" tabindex="0"></input></label>
         </div>
-        <!-- <h3>To check for availability, please select a date</h3> -->
       </section>
       <div class="main__central-display-login-modal hidden">
         <div class="login__inputs-box">
@@ -36,10 +35,10 @@
             <p class="login__invalid-password hidden">Invalid password!</p>
           </div>
           <label>Username:
-            <input class="login__username" type="text" tabindex="0"> 
+            <input class="login__username" type="text" tabindex="1"> 
           </label>
           <label>Password:
-            <input class="login__password" type="text" tabindex="1">
+            <input class="login__password" type="password" tabindex="2">
           </label>
           <button class="login__submit-button" tabindex="2">Submit</button>
         </div>
@@ -57,15 +56,23 @@
     </select>
     <section class="main__rooms-box">
       <h4 class="main__rooms-header hidden">Available Rooms:</h4>
-    </div>
-  </section>
+   </section>
 </section>
+<section class="manager__box hidden">
+  <section class="manager__daily-breakdown"></section>
+  <section class="manager__dashboard">
+      <form action="manager__search-form">
+        <label for="manager-search">Search Customer by Name:</label>
+        <input class="manager__input-search-customer" type="text" name="manager-search">
+        <button class="manager__input-search-customer-button">Submit</button><br>
+      </form>
+      <button class="manager__customer-detailed-bookings-button" disabled="true">View Detailed Bookings</button>
+      <section class="manager__dashboard-customer-info"></section>
+      <section class="manager__customer-detailed-bookings"></section>
+    </section>
+  </section>
 <div class="main__central-display-modal-mask hidden" data-bool="true"></div>
 </main>
-
-
-
 <script src="bundle.js"></script>
-
 </body>
 </html>
