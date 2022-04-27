@@ -50,9 +50,7 @@ class Hotel {
             })
         })
         return pastBookings
-
     }
-
 }
 
 

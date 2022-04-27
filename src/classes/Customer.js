@@ -12,7 +12,6 @@ class Customer {
     calculateTotalSpent(){
         this.totalSpent = Math.round(this.pastBookings.reduce((acc, booking) => acc += booking.cost, 0) * 100) / 100
     }
-
 }
 
 export default Customer;
