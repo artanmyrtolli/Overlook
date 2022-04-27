@@ -9,7 +9,7 @@ class Manager {
     }
     bookRoom(booking, hotel){
         hotel.bookings.push(booking)
-        this.customer.populatePastBookings(hotel.populateCustomerHistory(this.customer.id))
+        this.foundCustomer.populatePastBookings(hotel.populateCustomerHistory(this.foundCustomer.id))
     }
     deleteBooking(id, hotel){
         this.foundCustomer.pastBookings.forEach((booking,index) => {
