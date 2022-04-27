@@ -1,27 +1,17 @@
 import './css/styles.css';
 import { fetchData, postDataset, deleteBooking } from './apiCalls';
-// import Room from './classes/Room';
-import Customer from './classes/Customer';
 import Hotel from './classes/Hotel';
 import Manager from './classes/Manager';
-import { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg, pastBookingsButton, pastTotalSpent, rightBox, roomsBoxHeader, roomBox, roomBoxAll,  roomFilterDropdown, managerBox, managerSearchButton, managerSearchCustomer, managerDailyBreakdownBox, managerDashboard, managerCustomerInfo, managerCustomerBookings, managerCustomerBookingsButton } from './querySelectors.js'
+import { loginButton, calendarInput, welcomeMsg, loginModal, bookingsModal, modalMask, loginSubmitButton, loginPassword, loginUsername, invalidPasswordMsg, invalidUsernameMsg, pastBookingsButton, pastTotalSpent, roomBox,  roomFilterDropdown, managerBox, managerSearchButton, managerSearchCustomer, managerDailyBreakdownBox, managerCustomerInfo, managerCustomerBookings, managerCustomerBookingsButton } from './querySelectors.js'
 import datepicker from 'js-datepicker';
-
 import './images/horse-icon.png';
-  
+
+//------------------------------------------------
+
 let hotel;
 let customer;
 let selectedDate
 let manager;
-
-window.addEventListener('load', function(){
-    selectedDate = formatDate(new Date())
-    fetchData.then(data => {
-        hotel = new Hotel(data[2].bookings, data[0].customers)
-        hotel.instantiateRooms(data[1].rooms)
-        console.log('hotel', hotel);
-    })
-})
 
 const formatDate = (date) => {
     let month;
@@ -33,15 +23,6 @@ const formatDate = (date) => {
 
 const loginCustomer = () => {
     resetLoginBox()
-        // hide(loginModal);//temp
-        // hide(modalMask);
-        // hide(loginButton)
-        // let userID = parseInt(loginUsername.value.substr(8,2));
-        // customer = hotel.instantiateCustomer(6)
-        // customer.populatePastBookings(hotel.populateCustomerHistory(6))
-        // customer.calculateTotalSpent()
-        // populateDashboard()//temp
-
     if (!validateUsername()){
         show(invalidUsernameMsg)
         return 
@@ -53,8 +34,7 @@ const loginCustomer = () => {
         let userID = parseInt(loginUsername.value.substr(8,2));
         customer = hotel.instantiateCustomer(userID)
         customer.populatePastBookings(hotel.populateCustomerHistory(userID))
-        customer.calculateTotalSpent()     
-        console.log(customer);   
+        customer.calculateTotalSpent()        
         populateDashboard()
         show(roomBox)
     } else {
@@ -64,7 +44,6 @@ const loginCustomer = () => {
 
 const validateUsername = () => {
     let checkNumber = loginUsername.value.match(/\d+/) 
-    console.log(checkNumber); 
     if (loginUsername.value.substr(0, 7) === 'manager' && validatePassword()){
         loginManager()
         return
@@ -115,7 +94,7 @@ const renderPastBookings = () => {
     customer.pastBookings.sort((a,b) => a.date.split('/').join('') - b.date.split('/').join(''))
     customer.pastBookings.forEach(booking => {
         bookingsModal.innerHTML += `
-        <p class="booking_history"> Date: ${booking.date}, Room: ${booking.roomType} <br>Cost : $${booking.cost}</p> 
+        <p class="booking_history"> Date: ${booking.date}, Room: ${booking.roomType} <br>Cost : $${(booking.cost).toFixed(2)}</p> 
         `
     }) 
 }
@@ -134,7 +113,7 @@ const populateManagerDashboard = () => {
     show(managerBox);
     managerDailyBreakdownBox.innerHTML = `
     <p>Rooms available for ${selectedDate}: ${availableRooms.length} , ${100 - ((availableRooms.length / 25) * 100)} % booked.</p><br>
-    <p>Todays earnings: ${hotel.todaysBookedRooms.reduce((sum, room) => sum += room.costPerNight,0)}</p>
+    <p>Todays earnings: $${hotel.todaysBookedRooms.reduce((sum, room) => sum += room.costPerNight,0)}</p>
     `
 }
 
@@ -144,7 +123,6 @@ const managerFindCustomer = () => {
     manager.foundCustomer.calculateTotalSpent()
     customer = manager.foundCustomer
     hide(welcomeMsg)
-    console.log(manager.foundCustomer);
     managerDisplayCustomerDetails()
 }
 
@@ -166,7 +144,8 @@ const managerViewDetailedBookings = () => {
     <p>Room: ${booking.roomNumber}</p>
     <p>ID: ${booking.id}</p>
     <p>Cost: $${booking.cost}</p>
-    <button id="${booking.id}">Delete Booking</button>
+    <button class="delete-booking-button" id="${booking.id}">Delete Booking</button>
+    <p>-----------------------</p>
     `
     })
 }
@@ -182,13 +161,6 @@ const deleteCustomerBooking = (e) => {
     })
 }
 
-const show = (element) => {
-    element.classList.remove('hidden');
-}
-
-const hide = (element) => {
-    element.classList.add('hidden');
-}
 
 const closeModal = (e) => {
     if (e.target.dataset.bool === 'true'){
@@ -211,15 +183,15 @@ const renderRoomsAvailable = (date) => {
         roomBox.innerHTML += `
         <section class="main__rooms-card-box">
         <div class="main__room-card">
-          <h5 class="room__card-header">${roomTypeCap}</h5>
-          <img src="" alt=""></div>
+        <h5 class="room__card-header">${roomTypeCap}</h5>
+        <img src="" alt=""></div>
         <div class="main__room-card-info">
-          <h5 class="room__card-info-header">Room Details:</h5>
-          <p class="room__card-info-p">Bed size(s): ${room.bedSize}</p>
-          <p class="room__card-info-p">Number of beds: ${room.numBeds}</p>
-          <p class="room__card-info-p">Bidet: ${bidet}</p>
-          <p class="room__card-info-p">Estimated cost: $${Math.round(room.costPerNight)}</p>
-          <button class="room__card-book-button" data-room="${room.roomType}" id=${room.number}>Book Room</button></div>`
+        <h5 class="room__card-info-header">Room Details:</h5>
+        <p class="room__card-info-p">Bed size(s): ${room.bedSize}</p>
+        <p class="room__card-info-p">Number of beds: ${room.numBeds}</p>
+        <p class="room__card-info-p">Bidet: ${bidet}</p>
+        <p class="room__card-info-p">Estimated cost: $${Math.round(room.costPerNight)}</p>
+        <button class="room__card-book-button" data-room="${room.roomType}" id=${room.number}>Book Room</button></div>`
     })
 }
 
@@ -239,14 +211,16 @@ const postBooking = (e) => {
         customer.populatePastBookings(hotel.populateCustomerHistory(customer.id))
         customer.calculateTotalSpent()
         populateDashboard()
-        populateManagerDashboard()
-        managerDisplayCustomerDetails()
+        if (manager) {
+            populateManagerDashboard()
+            managerDisplayCustomerDetails()
+        }
+        
     })
 }
 
 const disableBookingButton = (e) => {
     let bookButtons = document.querySelectorAll('.room__card-book-button')
-    console.log(bookButtons);
     bookButtons.forEach(button => {
         if (button.id === e.target.id){
             button.classList.add('disabled')
@@ -258,11 +232,18 @@ const disableBookingButton = (e) => {
 const filterByRoomType = () => {
     renderRoomsAvailable(selectedDate)
     let roomCards = document.querySelectorAll('.main__room-card')
-        roomCards.forEach(card => {
-            if (card.innerText.toLowerCase() !== roomFilterDropdown.value){
-                card.parentElement.remove()
-            }
-        })
+    roomCards.forEach(card => {
+        if (card.innerText.toLowerCase() !== roomFilterDropdown.value){
+            card.parentElement.remove()
+        }
+    })
+}
+const show = (element) => {
+    element.classList.remove('hidden');
+}
+
+const hide = (element) => {
+    element.classList.add('hidden');
 }
 
 const picker = datepicker(calendarInput, {
@@ -278,8 +259,18 @@ const picker = datepicker(calendarInput, {
         selectedDate = value;
         show(roomBox)
         renderRoomsAvailable(value)
-      }
-  })
+    }
+})
+
+//---------------------------------------------------------------
+
+window.addEventListener('load', function(){
+    selectedDate = formatDate(new Date())
+    fetchData.then(data => {
+        hotel = new Hotel(data[2].bookings, data[0].customers)
+        hotel.instantiateRooms(data[1].rooms)
+    })
+})
 
 roomBox.addEventListener('click', (e) => {
     if (!event.target.id) 
