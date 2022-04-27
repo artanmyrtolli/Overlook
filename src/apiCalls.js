@@ -21,10 +21,18 @@ const postDataset = (id, date, roomNumber) => {
        'Content-Type': 'application/json'
      }
    }).then(response => response.json())
-//    .then(response => console.log('post response', response))
- 
-//    fetchData = Promise.all([fetchDatasets('bookings')])
+ }
+
+ const deleteBooking = (id) => {
+
+    return fetch(`http://localhost:3001/api/v1/bookings/${id}`, {
+     method: 'DELETE',
+     body: '',
+     headers: {
+       'Content-Type': 'application/json'
+     }
+   }).then(response => response.json())
  }
 
 
-export { fetchData, postDataset }
+export { fetchData, postDataset, deleteBooking }

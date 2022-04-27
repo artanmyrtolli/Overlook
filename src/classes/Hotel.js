@@ -6,7 +6,7 @@ class Hotel {
         this.allRooms;
         this.allCustomers = customerData;
         this.bookings = bookings;
-        this.todaysEarnings;
+        this.todaysBookedRooms = []
     }
 
     instantiateRooms(roomData) {
@@ -22,6 +22,7 @@ class Hotel {
     }
 
     returnFreeRooms(date){
+        this.todaysBookedRooms = []
         let bookings = this.filterBookingsByDate(date);
         let remainingRooms = []
         this.allRooms.forEach(room => remainingRooms.push(room))
@@ -29,6 +30,7 @@ class Hotel {
         bookings.forEach(booking => {
             remainingRooms.forEach((room, index) => {
                 if (booking.roomNumber === room.number){
+                    this.todaysBookedRooms.push(room)
                     remainingRooms.splice(index, 1)
                 }
             })

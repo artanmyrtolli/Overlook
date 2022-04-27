@@ -6,7 +6,7 @@ const expect = chai.expect;
 import { roomData, bookingData, customerData } from './sample-data';
 let hotel;
 
-describe('Hotel', function() {
+describe('Hotel', () => {
     beforeEach( () => {
         hotel = new Hotel(bookingData, customerData)
         hotel.instantiateRooms(roomData)
